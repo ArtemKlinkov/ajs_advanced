@@ -1,0 +1,1 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/780jj94sw5da7791?svg=true)](https://ci.appveyor.com/project/ArtemKlinkov/ajs-advanced)
