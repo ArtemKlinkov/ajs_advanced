@@ -1,4 +1,4 @@
-import { orderByProps, getSpecialsCallback } from '../advanced';
+import { orderByProps, getSpecials } from '../advanced';
 
 test('should throw error for sort fields passed as not an array', () => {
   const obj = {
@@ -52,6 +52,22 @@ test('should return array ordered by sort fields', () => {
   expect(orderByProps(obj, ['name', 'level'])).toEqual(expectedArr);
 });
 
+test('should return error "Не передан объект"', () => {
+  expect(() => { getSpecials(); }).toThrow('Не передан объект');
+});
+
+test('should return error "В переданном объекте отсутствует информация о спец.атаках"', () => {
+  const character = {
+    name: 'Лучник',
+    type: 'Bowman',
+    health: 50,
+    level: 3,
+    attack: 40,
+    defence: 10,
+  };
+  expect(() => { getSpecials(character); }).toThrow('В переданном объекте отсутствует информация о спец.атаках');
+});
+
 test('should return array of specials with description', () => {
   const character = {
     name: 'Лучник',
@@ -70,7 +86,7 @@ test('should return array of specials with description', () => {
     ],
   };
 
-  const result = character.special.map(getSpecialsCallback);
+  const result = getSpecials(character);
 
   const expectedArr = [
     {
@@ -101,7 +117,7 @@ test('should return array of specials with description = "Описание не�
     ],
   };
 
-  const result = character.special.map(getSpecialsCallback);
+  const result = getSpecials(character);
 
   const expectedArr = [
     {
